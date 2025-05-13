@@ -32,9 +32,12 @@ const ModelChat = () => {
     if (!prompt.trim()) return;
 
     try {
-      const { data } = await axios.post("http://localhost:9090/googleai/chat", {
-        prompt,
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/googleai/chat`,
+        {
+          prompt,
+        }
+      );
 
       // Assuming `data` is an array of strings:
       setResponses((prev) => [
