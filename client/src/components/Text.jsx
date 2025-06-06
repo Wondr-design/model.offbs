@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Text = () => {
   const [text, setText] = useState([]);
@@ -18,8 +18,9 @@ const Text = () => {
         );
         console.log(data);
         setText(data);
+        console.log(text);
       } catch (error) {
-        console.log(error);
+        console.error("Error in chat:", error);
       }
     };
     handlePromptSend();
@@ -28,6 +29,7 @@ const Text = () => {
   return (
     <div>
       {/* Check if the array is not empty, and if so, render each recipe name */}
+      {text}
       {text && text.length > 0 ? (
         text.map((item, index) => (
           <div key={index}>
