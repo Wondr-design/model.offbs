@@ -1,11 +1,13 @@
 // import ModelChat from "./components/ModelChat";
-import StructuredTextOutput from "./components/StructuredTextOutput";
+// import StructuredTextOutput from "./components/StructuredTextOutput";
+import Text from "./components/Text";
 
 const App = () => {
   return (
     <>
       {/* <ModelChat /> */}
-      <StructuredTextOutput />
+      {/* <StructuredTextOutput /> */}
+      <Text />
     </>
   );
 };
