@@ -28,6 +28,13 @@ const StructuredTextOutput = () => {
     }
   };
 
+  useEffect(() => {
+    if (mainPrompt.trim()) {
+      handlePromptSend();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mainPrompt]);
+
   return (
     <div className="p-4 text-white bg-gray-900 min-h-screen">
       <h2 className="text-2xl font-semibold mb-4">StructuredTextOutput</h2>
@@ -35,11 +42,21 @@ const StructuredTextOutput = () => {
         <input
           type="text"
           value={mainPrompt}
+          autoComplete="on"
+          autoCorrect="on"
+          spellCheck={true}
+          inputMode="text"
           onChange={(e) => setMainPrompt(e.target.value)}
           className="ml-2"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handlePromptSend();
+            }
+          }}
+          placeholder="Ask something..."
         />
         <button
-          onClick={handlePromptSend}
+          onClick={() => setMainPrompt(mainPrompt.trim())}
           className="ml-2 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={!mainPrompt.trim()}
         >
