@@ -59,7 +59,7 @@ const ModelChat = () => {
     <div className="flex flex-col h-screen bg-gray-900 text-white p-4">
       <h2 className="text-2xl font-semibold mb-4">ModelChat</h2>
       <div
-        className="flex-1 overflow-y-auto mb-4 p-4 rounded bg-gray-800 shadow custom-scrollbar"
+        className="flex-1 overflow-y-auto mb-4 p-4 rounded bg-black shadow custom-scrollbar"
         ref={responseRef}
       >
         {responses.map((res, index) => (
