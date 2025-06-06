@@ -74,6 +74,7 @@ Return: array of such objects.`;
               <h3 className="text-xl font-bold text-yellow-400">
                 {recipe.recipeName}
               </h3>
+              {""}
               <ul className="list-disc ml-5 mt-2">
                 {recipe.ingredients.map((ingredient, i) => (
                   <li key={i}>{ingredient}</li>
