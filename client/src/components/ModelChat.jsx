@@ -81,6 +81,11 @@ const ModelChat = () => {
         <input
           className="flex-1 px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={prompt}
+          type="text"
+          autoComplete="on"
+          autoCorrect="on"
+          spellCheck={true}
+          inputMode="text"
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
