@@ -8,24 +8,24 @@ const Text = () => {
   "Alice and Bob are going to a science fair on friday`;
 
   useEffect(() => {
-    const handlePromptSend = async () => {
-      try {
-        const { data } = await axios.post(
-          `${import.meta.env.VITE_API_URL}/googleai/mainstructured`,
-          {
-            prompt,
-          }
-        );
-        console.log(data);
-        setText(data);
-        console.log(text);
-      } catch (error) {
-        console.error("Error in chat:", error);
-      }
-    };
     handlePromptSend();
   }, []);
 
+  const handlePromptSend = async () => {
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/googleai/mainstructured`,
+        {
+          prompt,
+        }
+      );
+      console.log(data);
+      setText(data);
+      console.log(text);
+    } catch (error) {
+      console.error("Error in chat:", error);
+    }
+  };
   useEffect(() => {
     console.log("Updated text:", text);
   }, [text]);
