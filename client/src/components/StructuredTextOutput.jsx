@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const StructuredTextOutput = () => {
-  const [prompt, setPrompt] = useState("");
+  const [mainPrompt, setMainPrompt] = useState("");
   const [responses, setResponses] = useState([]);
 
-  useEffect(() => {
-    handlePromptSend();
-  }, []);
+  const prompt = `Use the ${mainPrompt} as input and generate a structured output.
+        Produce JSON matching this specification:
+
+        Recipe = { "recipeName": string, "ingredients": array<string> }
+        Return: array<Recipe>`;
 
   const handlePromptSend = async () => {
     try {
@@ -22,7 +24,7 @@ const StructuredTextOutput = () => {
     } catch (error) {
       console.error("Error in chat:", error);
     } finally {
-      setPrompt("");
+      setMainPrompt("");
     }
   };
 
@@ -30,7 +32,19 @@ const StructuredTextOutput = () => {
     <div className="p-4 text-white bg-gray-900 min-h-screen">
       <h2 className="text-2xl font-semibold mb-4">StructuredTextOutput</h2>
       <div className="mb-2">
-        <strong>Prompt:</strong> {prompt || "<empty>"}
+        <input
+          type="text"
+          value={mainPrompt}
+          onChange={(e) => setMainPrompt(e.target.value)}
+          className="ml-2"
+        />
+        <button
+          onClick={handlePromptSend}
+          className="ml-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={!mainPrompt.trim()}
+        >
+          Generate
+        </button>
       </div>
       <div>
         <strong>Response:</strong>
