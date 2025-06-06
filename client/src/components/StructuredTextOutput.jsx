@@ -5,11 +5,14 @@ const StructuredTextOutput = () => {
   const [mainPrompt, setMainPrompt] = useState("");
   const [responses, setResponses] = useState([]);
 
-  const prompt = `Use the ${mainPrompt} as input and generate a structured output.
-        Produce JSON matching this specification:
+  const prompt = `Use the input "${mainPrompt}" and return structured JSON with this format:
 
-        Recipe = { "recipeName": string, "ingredients": array<string> }
-        Return: array<Recipe>`;
+{
+  "recipeName": string,
+  "ingredients": array<string>
+}
+
+Return: array of such objects.`;
 
   const handlePromptSend = async () => {
     try {
@@ -65,9 +68,20 @@ const StructuredTextOutput = () => {
       </div>
       <div>
         <strong>Response:</strong>
-        <pre className="whitespace-pre-wrap mt-2 bg-gray-800 p-2 rounded">
-          {JSON.stringify(responses, null, 2)}
-        </pre>
+        <div className="mt-4 space-y-4">
+          {responses.map((recipe, index) => (
+            <div key={index} className="bg-gray-800 p-4 rounded">
+              <h3 className="text-xl font-bold text-yellow-400">
+                {recipe.recipeName}
+              </h3>
+              <ul className="list-disc ml-5 mt-2">
+                {recipe.ingredients.map((ingredient, i) => (
+                  <li key={i}>{ingredient}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
