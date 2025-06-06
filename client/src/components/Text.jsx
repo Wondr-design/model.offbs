@@ -26,20 +26,22 @@ const Text = () => {
     handlePromptSend();
   }, []);
 
+  useEffect(() => {
+    console.log("Updated text:", text);
+  }, [text]);
+
   return (
     <div>
-      {/* Check if the array is not empty, and if so, render each recipe name */}
-      {text}
       {text && text.length > 0 ? (
         text.map((item, index) => (
           <div key={index}>
-            {item.eventName}
-            {item.eventDate}
-            {item.eventParticipants}
-          </div> // Render the recipe name
+            <h3>{item.eventName}</h3>
+            <p>Date: {item.eventDate}</p>
+            <p>Participants: {item.eventParticipants?.join(", ")}</p>
+          </div>
         ))
       ) : (
-        <div>Loading...</div> // Show a loading message while waiting for data
+        <div>Loading...</div>
       )}
     </div>
   );
