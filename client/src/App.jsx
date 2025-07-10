@@ -5,9 +5,9 @@ import Text from "./components/Text";
 const App = () => {
   return (
     <>
-      {/* <ModelChat /> */}
+      <ModelChat />
       {/* <StructuredTextOutput /> */}
-      <Text />
+      {/* <Text /> */}
     </>
   );
 };
